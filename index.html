@@ -3,42 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SlangPedia | Global Smart Dictionary</title>
+    <title>SlangPedia | 25+ Trending Viral Words</title>
     <style>
-        :root { --primary: #00ff88; --bg: #0f172a; --card: #1e293b; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        :root { --primary: #00ff88; --bg: #0f172a; --card: #1e293b; --text: #f8fafc; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
         
-        .header { text-align: center; margin-bottom: 30px; }
-        h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 5px; }
+        .header { text-align: center; margin-bottom: 25px; }
+        h1 { color: var(--primary); font-size: 2.5rem; margin: 0; text-shadow: 0 0 10px rgba(0,255,136,0.3); }
         
-        .search-box { width: 100%; max-width: 500px; position: relative; margin-bottom: 30px; }
-        #searchInput { width: 100%; padding: 15px 25px; border-radius: 30px; border: 2px solid var(--primary); background: var(--card); color: white; font-size: 1.1rem; outline: none; box-sizing: border-box; }
-        #searchBtn { position: absolute; right: 10px; top: 7px; background: var(--primary); border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; color: #0f172a; }
+        .search-box { width: 100%; max-width: 550px; position: relative; margin-bottom: 25px; }
+        #searchInput { width: 100%; padding: 15px 25px; border-radius: 50px; border: 2px solid var(--primary); background: var(--card); color: white; font-size: 1.1rem; outline: none; box-sizing: border-box; transition: 0.3s; }
+        #searchInput:focus { box-shadow: 0 0 15px rgba(0,255,136,0.4); }
+        #searchBtn { position: absolute; right: 8px; top: 7px; background: var(--primary); border: none; padding: 10px 25px; border-radius: 40px; cursor: pointer; font-weight: bold; color: #0f172a; }
 
-        .section-title { width: 100%; max-width: 600px; font-size: 1.2rem; color: var(--primary); margin-bottom: 15px; text-align: left; }
+        .section-title { width: 100%; max-width: 800px; font-size: 1.4rem; color: var(--primary); margin: 20px 0; text-align: left; border-bottom: 1px solid #334155; padding-bottom: 10px; }
         
-        #resultArea { width: 100%; max-width: 600px; margin-bottom: 30px; }
+        /* Result Area */
+        #resultArea { width: 100%; max-width: 800px; margin-bottom: 20px; }
+        .slang-card { background: var(--card); padding: 25px; border-radius: 15px; border-left: 6px solid var(--primary); animation: slideIn 0.4s ease-out; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        @keyframes slideIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
         
-        .slang-card { background: var(--card); padding: 20px; border-radius: 15px; margin-bottom: 15px; border-left: 5px solid var(--primary); animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .word-title { font-size: 1.6rem; font-weight: bold; color: var(--primary); text-transform: capitalize; }
-        .meaning { margin-top: 10px; line-height: 1.6; color: #cbd5e1; }
-        .type { font-style: italic; color: #94a3b8; font-size: 0.9rem; }
-        
-        #trendingSection { width: 100%; max-width: 600px; }
-        .loading { display: none; color: var(--primary); }
+        .word-title { font-size: 1.8rem; font-weight: bold; color: var(--primary); text-transform: capitalize; margin-bottom: 10px; }
+        .meaning { font-size: 1.1rem; line-height: 1.7; color: #cbd5e1; }
+
+        /* Trending Grid */
+        .trending-grid { width: 100%; max-width: 800px; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+        .trending-pill { background: var(--card); padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; border: 1px solid #334155; transition: 0.3s; font-weight: 600; color: #94a3b8; }
+        .trending-pill:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-3px); background: #243147; }
+
+        .loading { display: none; color: var(--primary); font-weight: bold; margin: 10px; }
+        footer { margin-top: 50px; opacity: 0.5; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h1>SlangPedia ⚡</h1>
-        <p>Trending Slangs & Global Meanings</p>
+        <p>The Ultimate Gen-Z & Global Smart Dictionary</p>
     </div>
 
     <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search any word (e.g. Rizz, What, Love)...">
+        <input type="text" id="searchInput" placeholder="Type any word (Global Search)...">
         <button id="searchBtn" onclick="smartSearch()">Search</button>
     </div>
 
@@ -47,75 +52,30 @@
         <div id="dynamicResult"></div>
     </div>
 
-    <div class="section-title">🔥 Trending Right Now</div>
-    <div id="trendingSection">
-        <div class="slang-card">
-            <div class="word-title">Rizz</div>
-            <div class="meaning">Charisma or ability to attract a partner. Short for 'Charisma'.</div>
+    <div class="section-title">🔥 25+ Viral Trending Slangs</div>
+    <div class="trending-grid" id="pillContainer">
         </div>
-        <div class="slang-card">
-            <div class="word-title">Aura</div>
-            <div class="meaning">The vibe or energy someone radiates. Can be positive or negative.</div>
-        </div>
-    </div>
+
+    <footer>&copy; 2026 SlangPedia - Always Updated</footer>
 
     <script>
-        // 1. Trending words ki list (Yahan aap aur add kar sakte hain)
+        // 25+ Trending Words with 20+ words meanings
         const mySlangs = {
-            "rizz": "Charisma or the ability to attract a partner.",
-            "sigma": "Independent, successful, and self-reliant person.",
-            "aura": "The energy or vibe someone radiates.",
-            "cooked": "Being in a very bad situation or defeated."
-        };
-
-        async function smartSearch() {
-            const input = document.getElementById('searchInput').value.toLowerCase().trim();
-            const resultDiv = document.getElementById('dynamicResult');
-            const loader = document.getElementById('loader');
-            
-            if (!input) return;
-
-            resultDiv.innerHTML = "";
-            loader.style.display = "block";
-
-            // STEP 1: Pehle apni list mein check karo
-            if (mySlangs[input]) {
-                loader.style.display = "none";
-                showResult(input, mySlangs[input], "Trending Slang");
-                return;
-            }
-
-            // STEP 2: Agar wahan nahi mila, toh Global Dictionary API se poocho
-            try {
-                const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${input}`);
-                const data = await response.json();
-
-                loader.style.display = "none";
-
-                if (data.title === "No Definitions Found") {
-                    resultDiv.innerHTML = `<div class="slang-card">Word not found. Try another word!</div>`;
-                } else {
-                    const word = data[0].word;
-                    const meaning = data[0].meanings[0].definitions[0].definition;
-                    const partOfSpeech = data[0].meanings[0].partOfSpeech;
-                    showResult(word, meaning, partOfSpeech);
-                }
-            } catch (error) {
-                loader.style.display = "none";
-                resultDiv.innerHTML = `<div class="slang-card">Error connecting to database.</div>`;
-            }
-        }
-
-        function showResult(word, meaning, type) {
-            const resultDiv = document.getElementById('dynamicResult');
-            resultDiv.innerHTML = `
-                <div class="slang-card">
-                    <div class="type">${type}</div>
-                    <div class="word-title">${word}</div>
-                    <div class="meaning">${meaning}</div>
-                </div>
-            `;
-        }
-    </script>
-</body>
-</html>
+            "rizz": "Rizz is a slang term used to describe someone's charisma, charm, or their natural ability to attract a romantic partner or 'game'. It is short for the word 'charisma'.",
+            "sigma": "A Sigma is often described as a 'lone wolf'—someone who is successful, independent, and self-reliant, choosing to stay outside of traditional social hierarchies and alpha/beta groups.",
+            "aura": "Aura refers to the specific energy, vibe, or atmosphere that a person radiates. In modern trends, people 'gain' or 'lose' aura points based on how cool or embarrassing their actions are.",
+            "cooked": "When someone says 'I'm cooked' or 'Bro is cooked', it means they are in a hopeless situation, have failed completely, or are in big trouble with no way out.",
+            "delulu": "Delulu is short for 'delusional'. It is often used to describe someone who holds overly optimistic or unrealistic beliefs, especially in the context of celebrity crushes or romantic relationships.",
+            "mewing": "Mewing is a technique involving tongue placement on the roof of the mouth to define the jawline. It became a viral meme used with a 'shhh' gesture to show off looks.",
+            "skibidi": "Originally from a viral video series, 'Skibidi' is now used by Gen-Alpha as a general adjective for something evil, weird, or sometimes just as a random filler word in conversation.",
+            "fanum tax": "This term refers to the act of playfully stealing a bit of someone else's food. It was popularized by streamer Fanum and has become a common household joke.",
+            "gyatt": "Gyatt is an exclamation used when someone sees a person with a large or attractive physique. It is a loud, slang version of the phrase 'God Damn'.",
+            "no cap": "No cap means 'no lie' or 'I am serious'. It is used to emphasize that a statement is truthful and that the person is not bragging or exaggerating.",
+            "sus": "Short for 'suspicious'. Popularized by the game Among Us, it describes someone who is acting strangely, dishonestly, or looks like they are hiding a secret.",
+            "bet": "Bet is a slang term used to express agreement, approval, or a challenge. It is similar to saying 'OK', 'I agree', or 'Let's make it happen'.",
+            "poggers": "Originally an emoji from Twitch, Poggers is used to express extreme excitement, amazement, or joy when something cool or impressive happens during a game or in real life.",
+            "slay": "To slay means to do something exceptionally well, looking great while doing it, or achieving a major success that deserves praise and high admiration from others.",
+            "stan": "A stan is an overly obsessed or extreme fan of a celebrity, movie, or music group. The term comes from Eminem's song 'Stan' about a dangerous superfan.",
+            "vibe check": "A vibe check is a spontaneous test of someone's current energy or mood. It is used to see if a person is being positive or if they fit the current group atmosphere.",
+            "main character": "Describing someone as having 'Main Character Energy' means they are living their life with confidence, style, and a sense that the world revolves around their story.",
+            "gatekeep": "Gatekeeping is
