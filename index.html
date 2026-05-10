@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-    <meta name="google-site-verification" content="XGFiWYSEnfhPZ4k-05lRslr1jcFH7zCwyYfx40QtFKQ" />
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>SlangPedia | World's #1 Viral Slang & Multi-Language Dictionary</title>
-    <meta name="description" content="Instant meanings for Rizz, Sigma, Aura, and 25+ viral slangs. Global smart dictionary with auto-translation in Hindi, Spanish, French, and more.">
-    <meta name="keywords" content="slangpedia, internet slang dictionary, Gen-Z lingo, trending words meaning, what is rizz, sigma meaning, viral slangs 2026">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://shutripathi7732-bot.github.io/SlangPedia/">
+    <title>SlangPedia | Viral Internet Slangs & Global Dictionary 2026</title>
+    <meta name="description" content="Get instant meanings for Rizz, Sigma, Aura, and 100+ trending internet slangs. The world's fastest multi-language dictionary for Gen-Z lingo.">
+    <meta name="keywords" content="SlangPedia, internet slang, rizz meaning, sigma meaning, aura points, viral words 2026, gen z dictionary, what is skibidi">
+    <meta name="author" content="SlangPedia Team">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     
-    <meta property="og:title" content="SlangPedia | Viral Dictionary">
-    <meta property="og:description" content="Understand the internet in your own language. Fast, Free, and Smart.">
-    <meta property="og:type" content="website">
-
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "SlangPedia",
       "url": "https://shutripathi7732-bot.github.io/SlangPedia/",
+      "name": "SlangPedia",
+      "description": "Ultimate Global Slang Dictionary",
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://shutripathi7732-bot.github.io/SlangPedia/?q={search_term_string}",
@@ -33,35 +29,34 @@
 
     <style>
         :root { --primary: #00ff88; --bg: #0f172a; --card: #1e293b; --text: #f8fafc; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 15px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; line-height: 1.6; }
         
-        /* Auto-hide Translate bar but keep functional */
-        #google_translate_element { margin-bottom: 20px; align-self: flex-end; opacity: 0.8; }
-        .skiptranslate iframe { display: none !important; } 
-        body { top: 0px !important; }
+        #google_translate_element { align-self: flex-end; margin-bottom: 15px; border-radius: 5px; overflow: hidden; opacity: 0.9; }
 
-        .header { text-align: center; margin-bottom: 25px; margin-top: 20px; }
-        h1 { color: var(--primary); font-size: 3rem; margin: 0; text-shadow: 0 0 20px rgba(0,255,136,0.5); font-weight: 800; }
+        .header { text-align: center; margin-bottom: 30px; }
+        h1 { color: var(--primary); font-size: 3rem; margin: 0; text-shadow: 0 0 20px rgba(0,255,136,0.4); font-weight: 800; letter-spacing: -1px; }
+        .tagline { opacity: 0.8; font-size: 1.1rem; margin-top: 5px; }
+
+        .search-box { width: 100%; max-width: 600px; position: relative; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-radius: 50px; }
+        #searchInput { width: 100%; padding: 18px 25px; border-radius: 50px; border: 2px solid var(--primary); background: var(--card); color: white; font-size: 1.2rem; outline: none; box-sizing: border-box; transition: 0.3s; }
+        #searchInput:focus { border-color: #fff; box-shadow: 0 0 20px rgba(0,255,136,0.6); }
+        #searchBtn { position: absolute; right: 8px; top: 8px; background: var(--primary); border: none; padding: 12px 30px; border-radius: 40px; cursor: pointer; font-weight: bold; color: #0f172a; font-size: 1rem; }
+
+        #resultArea { width: 100%; max-width: 800px; margin-bottom: 30px; }
+        .slang-card { background: var(--card); padding: 35px; border-radius: 20px; border-left: 8px solid var(--primary); animation: slideUp 0.4s ease; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        .search-box { width: 100%; max-width: 550px; position: relative; margin-bottom: 25px; }
-        #searchInput { width: 100%; padding: 18px 25px; border-radius: 50px; border: 2px solid var(--primary); background: var(--card); color: white; font-size: 1.1rem; outline: none; box-sizing: border-box; }
-        #searchBtn { position: absolute; right: 8px; top: 8px; background: var(--primary); border: none; padding: 12px 25px; border-radius: 40px; cursor: pointer; font-weight: bold; color: #0f172a; }
+        .word-title { font-size: 2.5rem; font-weight: 800; color: var(--primary); margin-bottom: 10px; text-transform: capitalize; }
+        .meaning { font-size: 1.3rem; color: #e2e8f0; }
 
-        .section-title { width: 100%; max-width: 800px; font-size: 1.4rem; color: var(--primary); margin: 25px 0 15px; text-align: left; border-left: 4px solid var(--primary); padding-left: 10px; }
+        .section-title { width: 100%; max-width: 850px; font-size: 1.5rem; color: var(--primary); margin: 30px 0 15px; text-align: left; font-weight: bold; border-left: 5px solid var(--primary); padding-left: 15px; }
         
-        #resultArea { width: 100%; max-width: 800px; }
-        .slang-card { background: var(--card); padding: 30px; border-radius: 20px; border-bottom: 4px solid var(--primary); animation: pop 0.4s ease; box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
-        @keyframes pop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        
-        .word-title { font-size: 2.2rem; font-weight: bold; color: var(--primary); margin-bottom: 10px; }
-        .meaning { font-size: 1.25rem; line-height: 1.8; color: #e2e8f0; }
+        .trending-grid { width: 100%; max-width: 850px; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-bottom: 50px; }
+        .word-pill { background: #1e293b; padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid #334155; transition: 0.4s; font-weight: bold; color: #94a3b8; }
+        .word-pill:hover { background: var(--primary); color: #0f172a; transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,255,136,0.3); }
 
-        .trending-grid { width: 100%; max-width: 800px; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-bottom: 50px; }
-        .word-pill { background: #1e293b; padding: 15px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid #334155; transition: 0.3s; font-weight: bold; }
-        .word-pill:hover { background: var(--primary); color: #0f172a; transform: translateY(-5px); }
-
-        footer { margin-top: auto; padding: 30px; opacity: 0.6; text-align: center; border-top: 1px solid #334155; width: 100%; }
-        .loading { display: none; color: var(--primary); font-weight: bold; margin: 20px; }
+        footer { margin-top: auto; padding: 40px; opacity: 0.6; text-align: center; border-top: 1px solid #334155; width: 100%; font-size: 0.9rem; }
+        .loading { display: none; color: var(--primary); font-weight: bold; margin-bottom: 20px; font-size: 1.2rem; }
     </style>
 </head>
 <body>
@@ -70,75 +65,94 @@
 
     <div class="header">
         <h1>SlangPedia ⚡</h1>
-        <p>Global Intelligence. Local Language.</p>
+        <p class="tagline">Global Viral Slangs • Instant Meanings • Multi-Language</p>
     </div>
 
     <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search any world word...">
-        <button id="searchBtn" onclick="smartSearch()">Find</button>
+        <input type="text" id="searchInput" placeholder="Search Rizz, Sigma, or any word...">
+        <button id="searchBtn" onclick="smartSearch()">Search</button>
     </div>
 
     <div id="resultArea">
-        <div id="loader" class="loading">Analyzing Global Data...</div>
+        <div id="loader" class="loading">Scanning Global Slang Database...</div>
         <div id="dynamicResult"></div>
     </div>
 
-    <div class="section-title">🔥 World Trending Now</div>
+    <div class="section-title">🔥 60+ Trending Slangs (Tap for Meaning)</div>
     <div class="trending-grid" id="pillContainer"></div>
 
     <footer>
-        <strong>SlangPedia Global</strong><br>
-        The world's most advanced viral language database.
+        <strong>SlangPedia © 2026</strong><br>
+        Optimized for Google Search & Global Users.<br>
+        <em>Understand the internet, one slang at a time.</em>
     </footer>
 
     <script>
-        // AUTO-LANGUAGE DETECTION & TRANSLATION
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: true
-            }, 'google_translate_element');
-            
-            // Auto-detect browser language and trigger
-            setTimeout(() => {
-                let userLang = navigator.language || navigator.userLanguage;
-                let select = document.querySelector('select.goog-te-combo');
-                if (select) {
-                    select.value = userLang.split('-')[0];
-                    select.dispatchEvent(new Event('change'));
-                }
-            }, 1000);
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
         }
 
         const mySlangs = {
-            "rizz": "Rizz is your ability to attract a partner through charisma. It describes how well you can flirt or use your personality to win someone over.",
-            "sigma": "A sigma is a successful person who is independent and doesn't follow social rules. They are known as the 'lone wolf' of society.",
-            "aura": "Aura is the energy or vibe that you carry. People gain or lose aura points based on whether they do something cool or something embarrassing.",
-            "skibidi": "A slang term for something weird, evil, or funny. It started from an internet meme and is now a common word among Gen Alpha.",
-            "gyatt": "An exclamation used when someone is very impressed by another person's appearance or physique. It's a loud way of saying 'God Damn'.",
-            "fanum tax": "The act of taking a small piece of a friend's food. It's a playful 'tax' you pay to your friends while eating together.",
-            "cooked": "To be cooked means you are in a situation with no hope. You are defeated, in trouble, or have failed completely.",
-            "mewing": "A facial exercise to make the jawline look sharper. It involves keeping the tongue on the roof of the mouth and is a popular viral trend.",
-            "delulu": "Short for delusional. It's used when someone has unrealistic dreams, especially about their crush or their future success.",
-            "sus": "Short for suspicious. Used when someone is acting fake, dishonest, or looks like they are hiding a secret from the group.",
-            "no cap": "This means 'No Lie'. It's used to tell people that you are being 100% serious and not exaggerating at all.",
-            "bet": "A term used to say 'Yes', 'I agree', or 'Challenge accepted'. It's a quick way to confirm a plan or a deal.",
-            "slay": "To do something so well that it's impressive. Usually used for fashion, performance, or achieving a great success.",
-            "ghosting": "When someone you are talking to suddenly disappears and stops replying to your messages without any warning or reason.",
-            "tea": "Another word for gossip. 'Spilling the tea' means telling the latest juicy secrets or news about someone.",
-            "glow up": "A huge transformation where someone becomes much more attractive, confident, or successful than they were before.",
-            "clout": "The fame, power, or influence someone has on social media. People chase clout to get more followers and likes.",
-            "lowkey": "When you feel something secretly or quietly. You don't want to make a big deal out of it, but you still feel it.",
-            "highkey": "The opposite of lowkey. You want the whole world to know exactly how you feel, loud and clear.",
-            "ratio": "When a comment on a post gets more likes than the post itself. It's a way of saying the original post was wrong or bad.",
-            "gatekeep": "Keeping a secret about something cool so that other people don't find out and it stays exclusive to you.",
-            "main character": "Living your life with the confidence of a movie star. You are the center of your own universe.",
-            "situationship": "A romantic relationship that has no label. It's more than friends but not quite a boyfriend or girlfriend yet.",
-            "beige flag": "A personality trait that isn't good or bad, it's just boring or a bit weird. It's not a dealbreaker, just a quirk.",
-            "stan": "A combination of 'stalker' and 'fan'. It describes someone who is extremely obsessed with a celebrity or a brand.",
-            "vibe check": "Testing the energy of a person or a room to see if they are being positive or if they fit the current mood.",
-            "poggers": "An exclamation used in gaming to show excitement when something amazing or unexpected happens."
+            "rizz": "Rizz is short for charisma. It refers to your ability to attract or charm a romantic partner effortlessly.",
+            "sigma": "A sigma is a successful, independent person who chooses to live outside social hierarchies; often called a 'lone wolf'.",
+            "aura": "Aura points are a fun way to track how cool or energy-filled you are. You gain points for cool acts and lose them for cringey ones.",
+            "skibidi": "Initially from a meme series, it's used as a filler word or to describe something strange or bad.",
+            "gyatt": "A slang exclamation used to show extreme surprise or attraction, usually regarding someone's physique.",
+            "fanum tax": "The act of playfully stealing a bit of someone's food, popularized by the creator Fanum.",
+            "cooked": "When you're 'cooked', you're in a situation that's hopeless, or you've failed completely with no way out.",
+            "delulu": "Being delusional. Usually used for people who have unrealistic expectations in romance or life.",
+            "mewing": "A tongue exercise aimed at defining the jawline. Often paired with a 'shushing' gesture in viral videos.",
+            "no cap": "Basically means 'no lie'. Used to emphasize that what you're saying is 100% true.",
+            "sus": "Short for suspicious. Used when someone is acting strangely or fake.",
+            "bet": "Used to say 'OK' or to accept a challenge. It means 'I agree' or 'Let's do it'.",
+            "slay": "To do something amazingly well or look incredibly stylish. A term of high praise.",
+            "stan": "An obsessed fan of a celebrity or brand. A mix of 'stalker' and 'fan'.",
+            "tea": "Slang for gossip. 'Spilling the tea' means sharing juicy or secret information.",
+            "ghosting": "When someone stops all communication suddenly without any warning or explanation.",
+            "glow up": "A major positive transformation in someone's look or personality.",
+            "clout": "Influence, power, or fame on social media. People 'chase clout' for attention.",
+            "lowkey": "When you want to keep something quiet or secret; slightly or modestly.",
+            "highkey": "The opposite of lowkey; you want everyone to know your opinion clearly.",
+            "ratio": "On social media, when a reply gets more likes than the original post, showing the post was bad.",
+            "gatekeep": "Hiding info about something cool to stop it from becoming too popular.",
+            "main character": "Having the confidence to act like you're the star of the movie called 'Life'.",
+            "situationship": "A romantic relationship that has no label or commitment; more than friends, less than dating.",
+            "beige flag": "A quirk in a partner that isn't good or bad—just a bit weird or boring.",
+            "rent free": "When you can't stop thinking about someone or something; it's living 'rent free' in your head.",
+            "mid": "Something that is average, mediocre, or not very impressive.",
+            "periodt": "Used at the end of a sentence to show that the discussion is finished.",
+            "snatched": "Used when someone looks very good, especially their outfit or body shape.",
+            "bussin": "Used to describe food that is extremely tasty and flavorful.",
+            "drip": "Having a very high sense of style, fashion, or expensive accessories.",
+            "ick": "A sudden feeling of disgust for someone you were previously attracted to.",
+            "mood": "Used when you find something relatable to your own current state or feelings.",
+            "savage": "Someone who is bold, fierce, and doesn't care about what others think.",
+            "simp": "Someone who does too much for their crush without getting any attention back.",
+            "yeet": "To throw something with force or an exclamation of pure excitement.",
+            "cringe": "Something that makes you feel awkward or embarrassed on behalf of someone else.",
+            "goated": "Greatest of All Time. Used for someone who is the absolute best in their field.",
+            "flex": "To show off your money, power, or success to impress others.",
+            "W": "Short for 'Win'. Used when something good or successful happens.",
+            "L": "Short for 'Loss'. Used when someone fails or something bad happens.",
+            "valid": "Something that is true, acceptable, or very cool.",
+            "zesty": "Someone who is very energetic, lively, or flamboyant.",
+            "basic": "Someone who only follows mainstream trends and has no unique style.",
+            "clutch": "Doing exactly what is needed at a very critical or difficult moment.",
+            "dead": "Used when something is so funny you're 'dead' from laughing.",
+            "fire": "Something that is amazing, cool, or very impressive.",
+            "pressed": "Being annoyed or upset by something someone else said or did.",
+            "shook": "Being shocked, surprised, or startled by a piece of news.",
+            "finesse": "To skillfully handle a situation or trick someone to your advantage.",
+            "fam": "Close friends or people you consider as family.",
+            "hella": "An intensifier meaning 'very' or 'a lot'.",
+            "living my best life": "Being happy and successful regardless of others' opinions.",
+            "salty": "Being bitter or upset over a small or minor thing.",
+            "gucci": "Everything is good, fine, or cool.",
+            "on fleek": "Perfectly done; usually used for eyebrows or fashion.",
+            "it's giving": "Used to describe the vibe of something; like 'It's giving 90s'.",
+            "finna": "Short for 'fixing to'; about to do something.",
+            "slat": "Slime Love All the Time; used in hip-hop culture.",
+            "pog": "Exclamation of excitement; Play of the Game."
         };
 
         const pillContainer = document.getElementById('pillContainer');
@@ -148,7 +162,7 @@
             pill.innerText = word.toUpperCase();
             pill.onclick = () => {
                 document.getElementById('searchInput').value = word;
-                showResult(word, mySlangs[word], "Global Trending");
+                showResult(word, mySlangs[word], "Trending Slang");
                 window.scrollTo({top: 0, behavior: 'smooth'});
             };
             pillContainer.appendChild(pill);
@@ -158,13 +172,14 @@
             const input = document.getElementById('searchInput').value.toLowerCase().trim();
             const resultDiv = document.getElementById('dynamicResult');
             const loader = document.getElementById('loader');
+
             if (!input) return;
             resultDiv.innerHTML = "";
             loader.style.display = "block";
 
             if (mySlangs[input]) {
                 loader.style.display = "none";
-                showResult(input, mySlangs[input], "Global Trending");
+                showResult(input, mySlangs[input], "Verified Trending Slang");
                 return;
             }
 
@@ -172,14 +187,14 @@
                 const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${input}`);
                 const data = await response.json();
                 loader.style.display = "none";
-                if (data.title) {
-                    resultDiv.innerHTML = `<div class="slang-card"><div class="meaning">Word not found. Try our viral list below!</div></div>`;
-                } else {
+                if (!data.title) {
                     showResult(data[0].word, data[0].meanings[0].definitions[0].definition, data[0].meanings[0].partOfSpeech);
+                } else {
+                    resultDiv.innerHTML = `<div class="slang-card"><div class="meaning">Word not found in our viral database. Please try another word or click a slang below!</div></div>`;
                 }
             } catch (e) {
                 loader.style.display = "none";
-                resultDiv.innerHTML = `<div class="slang-card">Connection error. Please try again.</div>`;
+                resultDiv.innerHTML = `<div class="slang-card">Connection error. Try again.</div>`;
             }
         }
 
