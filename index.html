@@ -3,164 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>SlangPedia | Viral Gen-Z Slang Dictionary & Meanings</title>
-    <meta name="description" content="Ultimate dictionary for Gen-Z slangs and internet lingo. Find meanings of Rizz, Sigma, Aura, Cooked, and more. Stay updated with viral trends.">
-    <meta name="keywords" content="internet slang, Gen-Z dictionary, rizz meaning, sigma meaning, aura points, viral trends 2026, urban dictionary alternative">
-    <meta name="author" content="SlangPedia Team">
-    <meta name="robots" content="index, follow">
-
+    <title>SlangPedia | Viral Slang & Global Dictionary</title>
     <style>
-        :root {
-            --primary-color: #00ff88;
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        header {
-            width: 100%;
-            padding: 40px 20px;
-            text-align: center;
-            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-        }
-        h1 { font-size: 3rem; margin: 0; color: var(--primary-color); }
-        p.tagline { font-size: 1.1rem; opacity: 0.8; }
-
-        .search-container {
-            margin-top: 20px;
-            width: 90%;
-            max-width: 600px;
-        }
-        #searchInput {
-            width: 100%;
-            padding: 15px 25px;
-            border-radius: 50px;
-            border: 2px solid var(--primary-color);
-            background: var(--card-bg);
-            color: white;
-            font-size: 1.2rem;
-            outline: none;
-        }
-
-        .ad-space {
-            width: 90%;
-            max-width: 728px;
-            height: 90px;
-            background: #2d3748;
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px dashed #4a5568;
-            color: #718096;
-        }
-
-        .dictionary-grid {
-            width: 90%;
-            max-width: 800px;
-            margin-top: 20px;
-        }
-        .slang-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            border-left: 5px solid var(--primary-color);
-            transition: transform 0.2s;
-        }
-        .slang-card:hover { transform: scale(1.02); }
-        .word { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
-        .definition { margin-top: 8px; line-height: 1.6; }
-
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            font-size: 0.9rem;
-            opacity: 0.6;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: white; text-align: center; padding: 20px; }
+        #searchInput { width: 85%; max-width: 500px; padding: 15px; border-radius: 30px; border: 2px solid #00ff88; font-size: 18px; margin-bottom: 20px; outline: none; background: #1e293b; color: white; }
+        .slang-card { background: #1e293b; padding: 20px; border-radius: 15px; margin-bottom: 15px; text-align: left; border-left: 5px solid #00ff88; display: block; }
+        .word { font-size: 22px; font-weight: bold; color: #00ff88; }
+        .definition { margin-top: 5px; color: #cbd5e1; }
+        #notFound { display: none; padding: 20px; background: #334155; border-radius: 15px; }
+        .google-btn { display: inline-block; margin-top: 10px; padding: 10px 20px; background: #00ff88; color: #0f172a; text-decoration: none; border-radius: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>SlangPedia ⚡</h1>
-        <p class="tagline">The Pulse of Internet Language. No Cap.</p>
-        
-        <div class="search-container">
-            <input type="text" id="searchInput" onkeyup="searchSlang()" placeholder="Search trending slangs (e.g. Rizz)...">
-        </div>
-    </header>
+    <h1>SlangPedia ⚡</h1>
+    <p>Trending words & Global Meanings</p>
+    <input type="text" id="searchInput" onkeyup="searchSlang()" placeholder="Search any word (e.g. Rizz)...">
 
-    <div class="ad-space">
-        Ad Space - Google AdSense (Coming Soon)
-    </div>
-
-    <div class="dictionary-grid" id="slangList">
-        
+    <div id="slangList">
         <div class="slang-card">
             <div class="word">Rizz</div>
-            <div class="definition">Charisma or the ability to attract a romantic partner. Short for 'Charisma'.</div>
+            <div class="definition">Charisma or the ability to attract a partner.</div>
         </div>
-
         <div class="slang-card">
             <div class="word">Sigma</div>
-            <div class="definition">A popular, successful, but highly independent person. A "lone wolf."</div>
+            <div class="definition">Independent, successful, and self-reliant person.</div>
         </div>
-
         <div class="slang-card">
             <div class="word">Aura</div>
-            <div class="definition">The energy or vibe someone radiates. You can 'gain' or 'lose' aura based on your actions.</div>
+            <div class="definition">The energy or vibe someone radiates.</div>
         </div>
-
-        <div class="slang-card">
-            <div class="word">Cooked</div>
-            <div class="definition">When someone is in a very bad situation or has no chance of winning. "Bro is cooked."</div>
-        </div>
-
-        <div class="slang-card">
-            <div class="word">Mewing</div>
-            <div class="definition">A technique of tongue placement to improve jawline. Often used with a 'shhh' gesture.</div>
-        </div>
-
-        <div class="slang-card">
-            <div class="word">Delulu</div>
-            <div class="definition">Short for delusional. Usually refers to someone having unrealistic romantic expectations.</div>
-        </div>
-
     </div>
 
-    <div class="ad-space">
-        Ad Space - Footer Ads
+    <div id="notFound">
+        <p>Oops! Ye word hamari trending list mein nahi hai.</p>
+        <p id="missingWordText"></p>
+        <a href="#" id="googleSearchLink" target="_blank" class="google-btn">Google par iska matlab dekhein</a>
     </div>
-
-    <footer>
-        &copy; 2026 SlangPedia - The Global Internet Dictionary. Built for the Future.
-    </footer>
 
     <script>
         function searchSlang() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('slang-card');
-            
+            let slangList = document.getElementById('slangList');
+            let notFound = document.getElementById('notFound');
+            let foundCount = 0;
+
+            if (input.length === 0) {
+                notFound.style.display = "none";
+                slangList.style.display = "block";
+                for (let i = 0; i < cards.length; i++) cards[i].style.display = "block";
+                return;
+            }
+
             for (let i = 0; i < cards.length; i++) {
-                let word = cards[i].getElementsByClassName('word')[0].innerText.toLowerCase();
-                let definition = cards[i].getElementsByClassName('definition')[0].innerText.toLowerCase();
-                
-                if (word.includes(input) || definition.includes(input)) {
+                let text = cards[i].innerText.toLowerCase();
+                if (text.includes(input)) {
                     cards[i].style.display = "block";
+                    foundCount++;
                 } else {
                     cards[i].style.display = "none";
                 }
+            }
+
+            if (foundCount === 0) {
+                slangList.style.display = "none";
+                notFound.style.display = "block";
+                document.getElementById('missingWordText').innerText = "Search result for: " + input;
+                document.getElementById('googleSearchLink').href = "https://www.google.com/search?q=meaning+of+" + input;
+            } else {
+                slangList.style.display = "block";
+                notFound.style.display = "none";
             }
         }
     </script>
