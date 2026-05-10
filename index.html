@@ -3,78 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SlangPedia | Viral Slang & Global Dictionary</title>
+    <title>SlangPedia | Global Smart Dictionary</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: white; text-align: center; padding: 20px; }
-        #searchInput { width: 85%; max-width: 500px; padding: 15px; border-radius: 30px; border: 2px solid #00ff88; font-size: 18px; margin-bottom: 20px; outline: none; background: #1e293b; color: white; }
-        .slang-card { background: #1e293b; padding: 20px; border-radius: 15px; margin-bottom: 15px; text-align: left; border-left: 5px solid #00ff88; display: block; }
-        .word { font-size: 22px; font-weight: bold; color: #00ff88; }
-        .definition { margin-top: 5px; color: #cbd5e1; }
-        #notFound { display: none; padding: 20px; background: #334155; border-radius: 15px; }
-        .google-btn { display: inline-block; margin-top: 10px; padding: 10px 20px; background: #00ff88; color: #0f172a; text-decoration: none; border-radius: 20px; font-weight: bold; }
+        :root { --primary: #00ff88; --bg: #0f172a; --card: #1e293b; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        
+        .header { text-align: center; margin-bottom: 30px; }
+        h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 5px; }
+        
+        .search-box { width: 100%; max-width: 500px; position: relative; margin-bottom: 30px; }
+        #searchInput { width: 100%; padding: 15px 25px; border-radius: 30px; border: 2px solid var(--primary); background: var(--card); color: white; font-size: 1.1rem; outline: none; box-sizing: border-box; }
+        #searchBtn { position: absolute; right: 10px; top: 7px; background: var(--primary); border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; color: #0f172a; }
+
+        .section-title { width: 100%; max-width: 600px; font-size: 1.2rem; color: var(--primary); margin-bottom: 15px; text-align: left; }
+        
+        #resultArea { width: 100%; max-width: 600px; margin-bottom: 30px; }
+        
+        .slang-card { background: var(--card); padding: 20px; border-radius: 15px; margin-bottom: 15px; border-left: 5px solid var(--primary); animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .word-title { font-size: 1.6rem; font-weight: bold; color: var(--primary); text-transform: capitalize; }
+        .meaning { margin-top: 10px; line-height: 1.6; color: #cbd5e1; }
+        .type { font-style: italic; color: #94a3b8; font-size: 0.9rem; }
+        
+        #trendingSection { width: 100%; max-width: 600px; }
+        .loading { display: none; color: var(--primary); }
     </style>
 </head>
 <body>
 
-    <h1>SlangPedia ⚡</h1>
-    <p>Trending words & Global Meanings</p>
-    <input type="text" id="searchInput" onkeyup="searchSlang()" placeholder="Search any word (e.g. Rizz)...">
-
-    <div id="slangList">
-        <div class="slang-card">
-            <div class="word">Rizz</div>
-            <div class="definition">Charisma or the ability to attract a partner.</div>
-        </div>
-        <div class="slang-card">
-            <div class="word">Sigma</div>
-            <div class="definition">Independent, successful, and self-reliant person.</div>
-        </div>
-        <div class="slang-card">
-            <div class="word">Aura</div>
-            <div class="definition">The energy or vibe someone radiates.</div>
-        </div>
+    <div class="header">
+        <h1>SlangPedia ⚡</h1>
+        <p>Trending Slangs & Global Meanings</p>
     </div>
 
-    <div id="notFound">
-        <p>Oops! Ye word hamari trending list mein nahi hai.</p>
-        <p id="missingWordText"></p>
-        <a href="#" id="googleSearchLink" target="_blank" class="google-btn">Google par iska matlab dekhein</a>
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search any word (e.g. Rizz, What, Love)...">
+        <button id="searchBtn" onclick="smartSearch()">Search</button>
+    </div>
+
+    <div id="resultArea">
+        <div id="loader" class="loading">Searching global database...</div>
+        <div id="dynamicResult"></div>
+    </div>
+
+    <div class="section-title">🔥 Trending Right Now</div>
+    <div id="trendingSection">
+        <div class="slang-card">
+            <div class="word-title">Rizz</div>
+            <div class="meaning">Charisma or ability to attract a partner. Short for 'Charisma'.</div>
+        </div>
+        <div class="slang-card">
+            <div class="word-title">Aura</div>
+            <div class="meaning">The vibe or energy someone radiates. Can be positive or negative.</div>
+        </div>
     </div>
 
     <script>
-        function searchSlang() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.getElementsByClassName('slang-card');
-            let slangList = document.getElementById('slangList');
-            let notFound = document.getElementById('notFound');
-            let foundCount = 0;
+        // 1. Trending words ki list (Yahan aap aur add kar sakte hain)
+        const mySlangs = {
+            "rizz": "Charisma or the ability to attract a partner.",
+            "sigma": "Independent, successful, and self-reliant person.",
+            "aura": "The energy or vibe someone radiates.",
+            "cooked": "Being in a very bad situation or defeated."
+        };
 
-            if (input.length === 0) {
-                notFound.style.display = "none";
-                slangList.style.display = "block";
-                for (let i = 0; i < cards.length; i++) cards[i].style.display = "block";
+        async function smartSearch() {
+            const input = document.getElementById('searchInput').value.toLowerCase().trim();
+            const resultDiv = document.getElementById('dynamicResult');
+            const loader = document.getElementById('loader');
+            
+            if (!input) return;
+
+            resultDiv.innerHTML = "";
+            loader.style.display = "block";
+
+            // STEP 1: Pehle apni list mein check karo
+            if (mySlangs[input]) {
+                loader.style.display = "none";
+                showResult(input, mySlangs[input], "Trending Slang");
                 return;
             }
 
-            for (let i = 0; i < cards.length; i++) {
-                let text = cards[i].innerText.toLowerCase();
-                if (text.includes(input)) {
-                    cards[i].style.display = "block";
-                    foundCount++;
-                } else {
-                    cards[i].style.display = "none";
-                }
-            }
+            // STEP 2: Agar wahan nahi mila, toh Global Dictionary API se poocho
+            try {
+                const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${input}`);
+                const data = await response.json();
 
-            if (foundCount === 0) {
-                slangList.style.display = "none";
-                notFound.style.display = "block";
-                document.getElementById('missingWordText').innerText = "Search result for: " + input;
-                document.getElementById('googleSearchLink').href = "https://www.google.com/search?q=meaning+of+" + input;
-            } else {
-                slangList.style.display = "block";
-                notFound.style.display = "none";
+                loader.style.display = "none";
+
+                if (data.title === "No Definitions Found") {
+                    resultDiv.innerHTML = `<div class="slang-card">Word not found. Try another word!</div>`;
+                } else {
+                    const word = data[0].word;
+                    const meaning = data[0].meanings[0].definitions[0].definition;
+                    const partOfSpeech = data[0].meanings[0].partOfSpeech;
+                    showResult(word, meaning, partOfSpeech);
+                }
+            } catch (error) {
+                loader.style.display = "none";
+                resultDiv.innerHTML = `<div class="slang-card">Error connecting to database.</div>`;
             }
+        }
+
+        function showResult(word, meaning, type) {
+            const resultDiv = document.getElementById('dynamicResult');
+            resultDiv.innerHTML = `
+                <div class="slang-card">
+                    <div class="type">${type}</div>
+                    <div class="word-title">${word}</div>
+                    <div class="meaning">${meaning}</div>
+                </div>
+            `;
         }
     </script>
 </body>
